@@ -79,7 +79,7 @@ class ModelAdmin(BaseModelAdmin):
                 qs = qs.filter(reduce(operator.or_, or_queries))
 
         #Calculate number of documents
-        count = qs.count()
+        count = qs.clone().count()
 
         #Order queryset
         if sort:
