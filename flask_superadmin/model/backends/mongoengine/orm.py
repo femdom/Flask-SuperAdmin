@@ -62,7 +62,7 @@ class ModelConverter(object):
             kwargs['validators'].append(validators.Optional())
 
         if field.choices:
-            kwargs['choices'] = field.choices
+            kwargs['choices'] = [(c, c) for c in field.choices]
             if isinstance(field, IntField):
                 kwargs['coerce'] = int
             if not multiple:
