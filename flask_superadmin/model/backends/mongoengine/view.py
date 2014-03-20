@@ -86,9 +86,11 @@ class ModelAdmin(BaseModelAdmin):
             qs = qs.order_by('%s%s' % ('-' if sort_desc else '', sort))
 
         # Pagination
-        if page is not None:
-            qs = qs.skip(page * self.list_per_page)
-        qs = qs.limit(self.list_per_page)
+        #if page is not None:
+        #    qs = qs.skip(page * self.list_per_page)
+        #qs = qs.limit(self.list_per_page)
+        start = (page or 0) * self.list_per_page
+        qs = qs[start:start+self.list_per_page]
 
         if execute:
             qs = qs.all()
