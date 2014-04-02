@@ -100,6 +100,10 @@ class ModelConverter(object):
             return f.TextField(**kwargs)
         return f.TextAreaField(**kwargs)
 
+    @converts('DynamicField')
+    def conv_Dynamic(self, model, field, kwargs):
+        return f.TextField(**kwargs)
+
     @converts('URLField')
     def conv_URL(self, model, field, kwargs):
         kwargs['validators'].append(validators.URL())
