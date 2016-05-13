@@ -141,7 +141,9 @@ class BaseModelAdmin(BaseView):
         ret_vals = {}
         for field in self.readonly_fields:
             self_field = getattr(self, field, None)
-            if callable(self_field):
+            if not instance:
+                val = None
+            elif callable(self_field):
                 val = self_field(instance)
             else:
                 val = getattr(instance, field)
